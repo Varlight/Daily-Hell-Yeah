@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 LEVEL UP MODE 🔥</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: #00ff87;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            border: 3px solid #00ff87;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0, 255, 135, 0.5);
+            max-width: 800px;
+            width: 90%;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #00ff87;
+            text-shadow: 0 0 15px rgba(0, 255, 135, 0.7);
+            letter-spacing: 3px;
+        }
+
+        .countdown {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em;
+            font-weight: bold;
+            color: #000;
+            background-color: #00ff87;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .sub-text {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #00ff87;
+            background: rgba(0, 255, 135, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: #00ff87;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 LEVEL UP MODE 🔥</h1>
+        <div class="sub-text">MIDNIGHT HUSTLE ACTIVATED | TIME TO CRUSH TOMORROW</div>
+        <div class="countdown" id="countdown">00:00:00</div>
+        <div class="epic-text">START YOUR DAY WITH AN EPIC GUITAR SOLO THAT SCREAMS 'LET'S CRUSH IT!'</div>
+    
+    </div>
+
+    <footer>
+        EVERY SECOND COUNTS | KEEP PUSHING THE LIMITS
+    </footer>
+
+    <script>
+        const audio = new Audio("Free Bird (TOTEM Remix).mp3");
+        const countdownEl = document.getElementById("countdown");
+
+        function startDailySync() {
+            function checkAndPlayAtMidnight() {
+                const now = new Date();
+                const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+                
+                const timeToMidnight = Math.floor((midnight - now) / 1000);
+
+                const countdownInterval = setInterval(() => {
+                    const remaining = Math.floor((midnight - new Date()) / 1000);
+                    const hours = String(Math.floor(remaining / 3600)).padStart(2, '0');
+                    const minutes = String(Math.floor((remaining % 3600) / 60)).padStart(2, '0');
+                    const seconds = String(remaining % 60).padStart(2, '0');
+                    
+                    countdownEl.textContent = `${hours}:${minutes}:${seconds}`;
+                }, 1000);
+
+                // Precisely play at midnight
+                setTimeout(() => {
+                    clearInterval(countdownInterval);
+                    audio.currentTime = 0; // Reset to start of track
+                    audio.play();
+                    countdownEl.textContent = "🔥 NEXT LEVEL ACTIVATED 🚀";
+                    
+                    // Prepare for next day
+                    setTimeout(checkAndPlayAtMidnight, 5000);
+                }, timeToMidnight * 1000);
+            }
+
+            // Start immediately
+            checkAndPlayAtMidnight();
+        }
+
+        // Auto-start when page loads
+        window.addEventListener('load', startDailySync);
+    </script>
+</body>
+</html>
